@@ -1,8 +1,12 @@
 var express = require('express');
+var path = require('path');
+var http = require('http');
 var moment = require('moment');
 var data = require('./gamesdata.json');
 
-var app = express();
+var app = module.exports = express();
+app.set('port', process.env.PORT || 8000);
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Get list of all games
 app.route('/api/gameslist')
@@ -58,6 +62,46 @@ app.route('/api/:game/:period')
 		}
 	});
 
-app.listen(3300, function() {
-	console.log('Example server started on port 3300');
+const webpack = require('webpack');
+const webpackMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const config = require('./webpack.config.js');
+
+const isDeveloping = process.env.NODE_ENV !== 'production';
+const port = isDeveloping ? 3000 : process.env.PORT;
+
+if (isDeveloping) {
+  const compiler = webpack(config);
+  const middleware = webpackMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+    contentBase: 'src',
+    stats: {
+      colors: true,
+      hash: false,
+      timings: true,
+      chunks: false,
+      chunkModules: false,
+      modules: false
+    }
+  });
+
+  app.use(middleware);
+  app.use(webpackHotMiddleware(compiler));
+  app.get('*', function response(req, res) {
+    res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'public/index.html')));
+    res.end();
+  });
+} else {
+  app.use(express.static(__dirname + '/public'));
+  app.get('*', function response(req, res) {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+  });
+}
+
+// Starting express server
+http.createServer(app).listen(app.get('port'), function (err) {
+  if (err) {
+    console.log('Express server error: ' + err);
+  }
+  console.log('Express server listening on port ' + app.get('port'));
 });

@@ -18,11 +18,8 @@ function getGames() {
 
 // Get users rating based on game name and period
 function getUsersRating(game="all", period="all") {
-  let invoiceUrl = '';
-  if (invoiceId !== false) {
-    invoiceUrl = `/${invoiceId}/items`;
-  }
-  return fetch(`${baseUrl}/${game}${period}`)
+
+  return fetch(`${baseUrl}/${game}/${period}`)
     .then(res => {
       if(res.ok) {
         return res;
@@ -34,5 +31,5 @@ function getUsersRating(game="all", period="all") {
 
 export default {
   getGames,
-  getUsersRating,
+  getUsersRating
 };

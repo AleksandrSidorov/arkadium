@@ -35,11 +35,13 @@ class PeriodMenu extends Component {
 function mapStateToProps (state) {
 	return {
 		currentGame: state.games.currentGame,
+		currentPeriod: state.leaders.currentPeriod
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
+		setCurrentPeriod: () => dispatch(setCurrentPeriod(period)),
 		getLeaders: () => dispatch(getLeaders(game, period))
 	}
 }

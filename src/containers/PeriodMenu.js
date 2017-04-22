@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import {
+	setCurrentPeriod,
+} from '../actions';
+
 class PeriodMenu extends Component {
 	render() {
 		return (
@@ -10,19 +14,19 @@ class PeriodMenu extends Component {
 				<ul>
 					<li><Link
 						to={`/${this.props.currentGame}/today`}
-						onClick={() => this.props.getLeaders(this.props.currentGame, 'today')}
+						onClick={() => this.props.setCurrentPeriod('today')}
 					>
 						Today
 					</Link></li>
 					<li><Link
 						to={`/${this.props.currentGame}/week`}
-						onClick={() => this.props.getLeaders(this.props.currentGame, 'week')}
+						onClick={() => this.props.setCurrentPeriod('week')}
 					>
 						Week
 					</Link></li>
 					<li><Link
 						to={`/${this.props.currentGame}/all`}
-						onClick={() => this.props.getLeaders(this.props.currentGame, 'all')}
+						onClick={() => this.props.setCurrentPeriod('all')}
 					>
 						All time
 					</Link></li>
@@ -35,14 +39,12 @@ class PeriodMenu extends Component {
 function mapStateToProps (state) {
 	return {
 		currentGame: state.games.currentGame,
-		currentPeriod: state.leaders.currentPeriod
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		setCurrentPeriod: () => dispatch(setCurrentPeriod(period)),
-		getLeaders: () => dispatch(getLeaders(game, period))
+		setCurrentPeriod: (period) => dispatch(setCurrentPeriod(period))
 	}
 }
 

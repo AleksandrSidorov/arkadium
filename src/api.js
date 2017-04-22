@@ -17,7 +17,7 @@ function getGames() {
 }
 
 // Get users rating based on game name and period
-function getUsersRating(game="all", period="all") {
+function getUsersRating(game="all", period="today") {
 
   return fetch(`${baseUrl}/${game}/${period}`)
     .then(res => {

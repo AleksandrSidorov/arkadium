@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import LeadersList from '../components/LeadersList';
+
 import {
 	getLeaders
 } from '../actions';
+import getCachedLeaders from '../selectors';
 
 class LeaderBoard extends Component {
 
-	componentDidMount() {
-		this.props.getLeaders(this.props.currentGame, this.props.currentPeriod);
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.location != this.props.location) {
+			this.props.getLeaders(nextProps.currentGame, nextProps.currentPeriod);
+		}
 	}
-	
+
 	render() {
 		return (
-			<h3>This is the Leader Board</h3>
+			<div>
+				<h3>This is the Leader Board</h3>
+				<LeadersList leaders={this.props.leaders} />
+			</div>
 		)
 	}
 }

@@ -14,7 +14,7 @@ const LeadersList = ({ leaders }) => {
               <div className="avatar__background">
                 <img className="avatar__img" src="/img/avatar.jpg" />
               </div>
-              { index < 3 ? <img className="leader-card__star" src={`/img/star-${index}.jpg`} /> : null }
+              { index < 3 ? <img className="leader-card__star" src={`/img/star-${index}.png`} /> : null }
               <div className="leader-card__name">
                 {leader.name}
               </div>

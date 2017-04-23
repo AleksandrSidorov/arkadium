@@ -10,27 +10,26 @@ class PeriodMenu extends Component {
 	render() {
 		return (
 			<div>
-				<h3>Period Menu</h3>
-				<ul>
-					<li><Link
-						to={`/${this.props.currentGame}/today`}
-						onClick={() => this.props.setCurrentPeriod('today')}
-					>
-						Today
-					</Link></li>
-					<li><Link
-						to={`/${this.props.currentGame}/week`}
-						onClick={() => this.props.setCurrentPeriod('week')}
-					>
-						Week
-					</Link></li>
-					<li><Link
-						to={`/${this.props.currentGame}/all`}
-						onClick={() => this.props.setCurrentPeriod('all')}
-					>
-						All time
-					</Link></li>
-				</ul>
+				<Link
+					to={`/${this.props.currentGame}/today`}
+					onClick={() => this.props.setCurrentPeriod('today')}
+				>
+					Today
+				</Link>
+				{' | '}
+				<Link
+					to={`/${this.props.currentGame}/week`}
+					onClick={() => this.props.setCurrentPeriod('week')}
+				>
+					Week
+				</Link>
+				{' | '}
+				<Link
+					to={`/${this.props.currentGame}/all`}
+					onClick={() => this.props.setCurrentPeriod('all')}
+				>
+					All time
+				</Link>
 			</div>
 		)
 	}

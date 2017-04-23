@@ -1,0 +1,17 @@
+:root {
+  --dark-peach: #e56d48;
+  --purplish-grey: #807f81;
+  --white: #ffffff;
+  --black: #000000;
+}
+
+.period-menu {
+  font-family: Candara;
+  font-size: 14px;
+  color: var(--black);
+
+  &--active {
+    font-size: 18px;
+    color: var(--white);
+  }
+}

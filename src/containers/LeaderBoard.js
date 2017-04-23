@@ -19,7 +19,6 @@ class LeaderBoard extends Component {
 	render() {
 		return (
 			<div>
-				<h3>This is the Leader Board</h3>
 				<LeadersList leaders={this.props.leaders} />
 			</div>
 		)

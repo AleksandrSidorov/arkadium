@@ -1,0 +1,121 @@
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --robins-egg: #70d7fd;
+  --background-gray: #e2e1e1;
+  --dark-peach: #e56d48;
+  --grapefruit: #ff5050;
+}
+
+.leaders-wrapper {
+  margin: 0;
+  padding: 0;
+  overflow: scroll;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+}
+
+.avatar {
+  &__background {
+    position: absolute;
+    top: 4px;
+    left: 28px;
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    background-color: var(--robins-egg);
+  }
+
+  &__img {
+    position: absolute;
+    top: 5px;
+    left: 1px;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+  }
+}
+
+.leader-card {
+  flex: 0 0 auto;
+  list-style: none;
+  width: 110px;
+  height: 150px;
+  margin-right: 1px;
+  position: relative;
+  background: var(--white);
+
+  &--gray {
+    background: var(--background-gray);
+  }
+
+  &__place {
+    position: absolute;
+    top: 4px;
+    left: 1px;
+    width: 29px;
+    height: 18px;
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    text-align: center;
+    background-color: var(--white);
+    color: var(--black);
+    border: 1px solid var(--dark-peach);
+
+    &--first {
+      color: var(--dark-peach);
+      font-size: 18px;
+    }
+  }
+
+  &__name {
+    position: absolute;
+    top: 88px;
+    width: 100%;
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.29;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+
+  &__star {
+    display: block;
+    position: absolute;
+    top: 57px;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+  }
+
+  &__score {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 22px;
+    background-color: var(--robins-egg);
+    font-family: Helvetica;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 22px;
+    text-align: center;
+    color: var(--black);
+
+    &--first {
+      color: var(--grapefruit);
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .leaders-wrapper {
+    flex-direction: column;
+  }
+}

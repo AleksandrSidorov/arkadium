@@ -9,6 +9,8 @@ import {
 	setCurrentGame,
 } from '../actions';
 
+import './Menu.css';
+
 class Menu extends Component {
 
 	componentDidMount() {
@@ -20,10 +22,13 @@ class Menu extends Component {
 
 	render () {
 		return (
-			<div>
-				<h2>Games menu</h2>
+			<div
+        className={"menu" + (this.props.menuIsVisible ? " menu--visible" : "")}
+      >
 				<GamesList
 				  games={this.props.games}
+          currentGame={this.props.currentGame}
+          currentPeriod={this.props.currentPeriod}
 				  handleCurrentGame={this.props.setCurrentGame} />
 			</div>
 		)
@@ -33,7 +38,10 @@ class Menu extends Component {
 function mapStateToProps (state) {
 	return {
 		games: state.games.games,
-		gamesFetching: state.games.gamesFetching
+    currentGame: state.games.currentGame,
+    currentPeriod:state.leaders.currentPeriod,
+		gamesFetching: state.games.gamesFetching,
+    menuIsVisible: state.menu.menuIsVisible,
 	}
 }
 

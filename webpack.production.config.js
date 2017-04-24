@@ -31,16 +31,33 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [{
-      test: /\.(jsx|js)?$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-      query: {
-        presets: [ 'stage-0', 'es2015', 'react' ]
+    loaders: [
+      {
+        test: /\.(jsx|js)?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets: [ 'stage-0', 'es2015', 'react' ]
+        }
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          {
+              loader: 'style-loader',
+          },
+          {
+              loader: 'css-loader',
+              options: {
+                  importLoaders: 1,
+              }
+          },
+          {
+              loader: 'postcss-loader'
+          }
+        ]
       }
-    }, {
-      test: /\.css$/,
-      loader: 'style!css'
-    }]
+    ]
   }
 };

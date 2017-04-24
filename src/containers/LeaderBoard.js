@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Scrollbars } from 'react-custom-scrollbars';
 
+import './LeaderBoard.css';
 import LeadersList from '../components/LeadersList';
 
 import {
@@ -9,18 +11,24 @@ import {
 import getCachedLeaders from '../selectors';
 
 class LeaderBoard extends Component {
+  componentDidMount() {
+    this.props.getLeaders(this.props.currentGame, this.props.currentPeriod);
+  }
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.location != this.props.location) {
+    //if (this.props.currentGame !== nextProps.currentGame || this.props.currentPeriod !== nextProps.currentPeriod) {
 			this.props.getLeaders(nextProps.currentGame, nextProps.currentPeriod);
 		}
 	}
 
 	render() {
 		return (
-			<div>
-				<LeadersList leaders={this.props.leaders} />
-			</div>
+      <div className="leaderboard-wrapper">
+  			<Scrollbars>
+  				<LeadersList leaders={this.props.leaders} />
+  			</Scrollbars>
+      </div>
 		)
 	}
 }

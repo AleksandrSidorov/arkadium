@@ -6,12 +6,50 @@
 }
 
 .period-menu {
+  position: absolute;
+  top: 0;
+  right: 60px;
   font-family: Candara;
+  font-weight: bold;
   font-size: 14px;
-  color: var(--black);
+  line-height: 40px;
+  text-transform: uppercase;
 
-  &--active {
-    font-size: 18px;
+  &__link {
+    color: var(--black);
+    text-decoration: none;
+
+    &--active {
+      font-size: 18px;
+      color: var(--white);
+    }
+  }
+
+  &__separator {
     color: var(--white);
+    font-weight: normal;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 414px) {
+  .period-menu {
+    position: static;
+    line-height: 27px;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--dark-peach);
+
+    &__link {
+      color: var(--purplish-grey);
+
+      &--active {
+        color: var(--dark-peach);
+      }
+    }
+
+    &__separator {
+      color: var(--purplish-grey);
+    }
   }
 }

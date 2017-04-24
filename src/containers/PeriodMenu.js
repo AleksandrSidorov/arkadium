@@ -6,25 +6,30 @@ import {
 	setCurrentPeriod,
 } from '../actions';
 
+import './PeriodMenu.css';
+
 class PeriodMenu extends Component {
 	render() {
 		return (
-			<div>
+			<div className="period-menu">
 				<Link
+          className={"period-menu__link" + (this.props.currentPeriod == 'today' ? " period-menu__link--active" : "")}
 					to={`/${this.props.currentGame}/today`}
 					onClick={() => this.props.setCurrentPeriod('today')}
 				>
 					Today
 				</Link>
-				{' | '}
+				<span className="period-menu__separator">{'|'}</span>
 				<Link
+          className={"period-menu__link" + (this.props.currentPeriod == 'week' ? " period-menu__link--active" : "")}
 					to={`/${this.props.currentGame}/week`}
 					onClick={() => this.props.setCurrentPeriod('week')}
 				>
-					Week
+					This Week
 				</Link>
-				{' | '}
+				<span className="period-menu__separator">{'|'}</span>
 				<Link
+          className={"period-menu__link" + (this.props.currentPeriod == 'all' ? " period-menu__link--active" : "")}
 					to={`/${this.props.currentGame}/all`}
 					onClick={() => this.props.setCurrentPeriod('all')}
 				>
@@ -38,6 +43,7 @@ class PeriodMenu extends Component {
 function mapStateToProps (state) {
 	return {
 		currentGame: state.games.currentGame,
+    currentPeriod: state.leaders.currentPeriod,
 	}
 }
 

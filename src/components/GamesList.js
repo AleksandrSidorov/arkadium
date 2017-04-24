@@ -1,16 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const GamesList = ({ games, handleCurrentGame }) => {
+import './GamesList.css';
+
+const GamesList = ({ games, currentGame, currentPeriod, handleCurrentGame }) => {
 	return (
-		<ul>
-			<li><Link to="/all/all">All Games</Link></li>
+		<ul className="games-list">
+			<li className="gmes-list games-list__item">
+        <Link
+          className={"gmes-list games-list__link" + (currentGame == 'all' ? " games-list__link--active" : "")}
+          to={"/all/all"}
+          onClick={ () => handleCurrentGame('all')}
+        >
+          All Games
+        </Link>
+      </li>
 			{
 				games.map((game, index) => {
 					return (
-						<li key={index}>
+						<li className="gmes-list games-list__item" key={index}>
 							<Link
-								to={`/${game}/all`}
+                className={"gmes-list games-list__link" + (currentGame == game ? " games-list__link--active" : "")}
+								to={`/${game}/${currentPeriod}`}
 								onClick={ () => handleCurrentGame(game)}
 							>
 								{game}

@@ -1,0 +1,10 @@
+.leaderboard-wrapper {
+  flex: 0 0 160px;
+}
+
+@media (max-width: 414px) {
+  .leaderboard-wrapper {
+    flex: 1 0 0%;
+  }
+
+}

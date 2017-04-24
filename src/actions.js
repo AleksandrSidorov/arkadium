@@ -9,6 +9,10 @@ export const LEADERS_FETCH_FAILED = 'LEADERS_FETCH_FAILED';
 export const LEADERS_GET_FROM_CACHE = 'LEADERS_GET_FROM_CACHE';
 export const SET_CURRENT_PERIOD = 'SET_CURRENT_PERIOD';
 
+export const MENU_SHOW = 'MENU_SHOW';
+export const MENU_HIDE = 'MENU_HIDE';
+export const MENU_TOGGLE = 'MENU_TOGGLE';
+
 // Games List Actions
 export function getGames() {
 	return {
@@ -73,4 +77,24 @@ export function receiveLeadersFails() {
 	return {
 		type: LEADERS_FETCH_FAILED,
 	}
+}
+
+export function menuToggle() {
+  return {
+    type: MENU_TOGGLE
+  }
+}
+
+export function menuShow() {
+  return {
+    type: MENU_SHOW,
+    menuIsVisible: true
+  }
+}
+
+export function menuHide() {
+  return {
+    type: MENU_HIDE,
+    menuIsVisible: false
+  }
 }

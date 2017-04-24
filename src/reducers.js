@@ -8,6 +8,9 @@ import {
 	LEADERS_FETCH_RECEIVED,
 	LEADERS_GET_FROM_CACHE,
 	SET_CURRENT_PERIOD,
+  MENU_SHOW,
+  MENU_HIDE,
+  MENU_TOGGLE,
 } from './actions';
 
 const initialGamesState = {
@@ -18,9 +21,13 @@ const initialGamesState = {
 
 const initialLeadersState = {
 	leaders: [],
-	currentPeriod: "today",
+	currentPeriod: "all",
 	leadersFetching: false,
 	gamesCache: {},
+}
+
+const initialMenuState = {
+  menuIsVisible: false,
 }
 
 function games(state=initialGamesState, action) {
@@ -85,9 +92,33 @@ function leaders(state=initialLeadersState, action) {
 	}
 }
 
+function menu(state=initialMenuState, action) {
+  switch(action.type) {
+    case MENU_SHOW:
+      return {
+        ...state,
+        menuIsVisible: true
+      }
+    case MENU_HIDE:
+      return {
+        ...state,
+        menuIsVisible: false
+      }
+    case MENU_TOGGLE:
+      var currentMenu = state.menuIsVisible;
+      return {
+        ...state,
+        menuIsVisible: !currentMenu
+      }
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
 	games,
-	leaders
+	leaders,
+  menu
 });
 
 export default rootReducer;

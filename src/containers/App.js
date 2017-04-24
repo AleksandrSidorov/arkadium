@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import Helmet from 'react-helmet';
 
 import './App.css';
-import Header from '../components/Header';
+import Header from './Header';
 import LeaderBoard from './LeaderBoard';
 
 class App extends Component {

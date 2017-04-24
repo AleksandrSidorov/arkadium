@@ -18,12 +18,14 @@ export function* getLeaders(action) {
 	const cachedLeaders = yield select(getCachedLeaders, action.game, action.period);
 	if (cachedLeaders) {
 		yield put(actions.getLeadersFromCache(cachedLeaders));
+    yield put(actions.menuHide());
 	} else {
 		try {
 			yield put(actions.fetchLeaders());
 			const leaders = yield call(api.getUsersRating, action.game, action.period);
 			yield leaders.sort((a, b) => b.score - a.score);
 			yield put(actions.receiveLeaders(leaders, action.game, action.period));
+      yield put(actions.menuHide());
 		}
 		catch (err) {
 			yield put(actions.receiveLeadersFailed(err));
